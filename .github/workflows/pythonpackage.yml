@@ -9,7 +9,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [3.5, 3.6, 3.7]
+        python-version: [3.6]
 
     steps:
     - uses: actions/checkout@v1
@@ -22,7 +22,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install -r dev-requirements.txt
-    - name: Sphinx buikd
+    - name: Install NLP Architect
+      run: |
+        pip install .
+    - name: Sphinx build
       working-directory: docs-source
       run: |
         make html
